@@ -4,7 +4,7 @@ region = "us-east-1"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-00ca32bbc84273381"
+  ami             = "ami-07860a2d7eb515d9a"
   instance_type   = "t3.micro"
   key_name        = "TERRRA"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -23,7 +23,7 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-00ca32bbc84273381"
+  ami             = "ami-07860a2d7eb515d9a"
   instance_type   = "t3.micro"
   key_name        = "TERRRA"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -42,7 +42,7 @@ EOF
 }
 
 resource "aws_instance" "three" {
-  ami             = "ami-00ca32bbc84273381"
+  ami             = "ami-07860a2d7eb515d9a"
   instance_type   = "t3.micro"
   key_name        = "TERRRA"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -53,7 +53,7 @@ resource "aws_instance" "three" {
 }
 
 resource "aws_instance" "four" {
-  ami             = "ami-00ca32bbc84273381"
+  ami             = "ami-07860a2d7eb515d9a"
   instance_type   = "t3.micro"
   key_name        = "TERRRA"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -100,7 +100,7 @@ default = ["milky", "tillu", "hari", "Dharani"]
 
 resource "aws_ebs_volume" "eight" {
  availability_zone = "us-east-1a"
-  size = 40
+  size = 25
   tags = {
     Name = "ebs-001"
   }
