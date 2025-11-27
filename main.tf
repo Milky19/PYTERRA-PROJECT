@@ -4,9 +4,9 @@ region = "us-east-1"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-07860a2d7eb515d9a"
+  ami             = "ami-0fa3fe0fa7920f68e"
   instance_type   = "t3.micro"
-  key_name        = "TERRRA"
+  key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1a"
   user_data       = <<EOF
@@ -23,9 +23,9 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-07860a2d7eb515d9a"
+  ami             = "ami-0fa3fe0fa7920f68e"
   instance_type   = "t3.micro"
-  key_name        = "TERRRA"
+  key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1b"
   user_data       = <<EOF
@@ -42,9 +42,9 @@ EOF
 }
 
 resource "aws_instance" "three" {
-  ami             = "ami-07860a2d7eb515d9a"
+  ami             = "ami-0fa3fe0fa7920f68e"
   instance_type   = "t3.micro"
-  key_name        = "TERRRA"
+  key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1a"
   tags = {
@@ -53,9 +53,9 @@ resource "aws_instance" "three" {
 }
 
 resource "aws_instance" "four" {
-  ami             = "ami-07860a2d7eb515d9a"
+  ami             = "ami-0fa3fe0fa7920f68e"
   instance_type   = "t3.micro"
-  key_name        = "TERRRA"
+  key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1b"
   tags = {
