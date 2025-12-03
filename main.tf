@@ -6,7 +6,7 @@ region = "us-east-1"
 resource "aws_instance" "one" {
   ami             = "ami-0fa3fe0fa7920f68e"
   instance_type   = "t3.micro"
-  key_name        = "NEXUS"
+  key_name        = "IAC-USER"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1a"
   user_data       = <<EOF
@@ -15,7 +15,7 @@ sudo -i
 yum install httpd -y
 systemctl start httpd
 chkconfig httpd on
-echo "Hi all this is my app created by terraform infrastructurte by pythonlife devops krishna sir server-1" > /var/www/html/index.html
+echo "Hi all this is my app created by terraform infrastructurte by pythonlife devops Jagadeesh server-1" > /var/www/html/index.html
 EOF
   tags = {
     Name = "web-server-1"
@@ -44,7 +44,7 @@ EOF
 resource "aws_instance" "three" {
   ami             = "ami-0fa3fe0fa7920f68e"
   instance_type   = "t3.micro"
-  key_name        = "NEXUS"
+  key_name        = "IAC-USER"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1a"
   tags = {
@@ -55,7 +55,7 @@ resource "aws_instance" "three" {
 resource "aws_instance" "four" {
   ami             = "ami-0fa3fe0fa7920f68e"
   instance_type   = "t3.micro"
-  key_name        = "NEXUS"
+  key_name        = "IAC-USER"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1b"
   tags = {
