@@ -4,7 +4,7 @@ region = "us-east-1"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-0fa3fe0fa7920f68e"
+  ami             = "ami-068c0051b15cdb816"
   instance_type   = "t3.micro"
   key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -15,7 +15,7 @@ sudo -i
 yum install httpd -y
 systemctl start httpd
 chkconfig httpd on
-echo "Hi all this is my app created by terraform infrastructurte by pythonlife devops krishna sir server-1" > /var/www/html/index.html
+echo "This is my app created by terraform infrastructurte by pythonlife devops krishna sir SERVER-1" > /var/www/html/index.html
 EOF
   tags = {
     Name = "web-server-1"
@@ -23,7 +23,7 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-0fa3fe0fa7920f68e"
+  ami             = "ami-068c0051b15cdb816"
   instance_type   = "t3.micro"
   key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -42,7 +42,7 @@ EOF
 }
 
 resource "aws_instance" "three" {
-  ami             = "ami-0fa3fe0fa7920f68e"
+  ami             = "ami-068c0051b15cdb816"
   instance_type   = "t3.micro"
   key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -53,7 +53,7 @@ resource "aws_instance" "three" {
 }
 
 resource "aws_instance" "four" {
-  ami             = "ami-0fa3fe0fa7920f68e"
+  ami             = "ami-068c0051b15cdb816"
   instance_type   = "t3.micro"
   key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -95,7 +95,7 @@ name = each.value
 variable "user_names" {
 description = "*"
 type = set(string)
-default = ["milky", "tillu", "hari", "Dharani"]
+default = ["milky1", "tillu1", "hari1", "Dharani1"]
 }
 
 resource "aws_ebs_volume" "eight" {
