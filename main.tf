@@ -4,7 +4,7 @@ region = "us-east-1"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-068c0051b15cdb816"
+  ami             = "ami-0532be01f26a3de55"
   instance_type   = "t3.micro"
   key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -23,7 +23,7 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-068c0051b15cdb816"
+  ami             = "ami-0532be01f26a3de55"
   instance_type   = "t3.micro"
   key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -42,7 +42,7 @@ EOF
 }
 
 resource "aws_instance" "three" {
-  ami             = "ami-068c0051b15cdb816"
+  ami             = "ami-0532be01f26a3de55"
   instance_type   = "t3.micro"
   key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
@@ -53,7 +53,7 @@ resource "aws_instance" "three" {
 }
 
 resource "aws_instance" "four" {
-  ami             = "ami-068c0051b15cdb816"
+  ami             = "ami-0532be01f26a3de55"
   instance_type   = "t3.micro"
   key_name        = "NEXUS"
   vpc_security_group_ids = [aws_security_group.five.id]
