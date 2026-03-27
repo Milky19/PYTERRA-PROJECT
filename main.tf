@@ -1,14 +1,14 @@
 
 provider "aws" {
-region = "us-east-1"
+region = "ap-south-1"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-0f3caa1cf4417e51b"
-  instance_type   = "t2.micro"
-  key_name        = "MYAWS"
+  ami             = "ami-0f559c3642608c138"
+  instance_type   = "t3.micro"
+  key_name        = "ANSIBLE"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "us-east-1a"
+  availability_zone = "ap-south-1a"
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
@@ -23,11 +23,11 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-0f3caa1cf4417e51b"
-  instance_type   = "t2.micro"
-  key_name        = "MYAWS"
+  ami             = "ami-0f559c3642608c138"
+  instance_type   = "t3.micro"
+  key_name        = "ANSIBLE"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "us-east-1b"
+  availability_zone = "ap-south-1b"
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
@@ -42,22 +42,22 @@ EOF
 }
 
 resource "aws_instance" "three" {
-  ami             = "ami-0f3caa1cf4417e51b"
-  instance_type   = "t2.micro"
-  key_name        = "MYAWS"
+  ami             = "ami-0f559c3642608c138"
+  instance_type   = "t3.micro"
+  key_name        = "ANSIBLE"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "us-east-1a"
+  availability_zone = "ap-south-1a"
   tags = {
     Name = "app-server-1"
   }
 }
 
 resource "aws_instance" "four" {
-  ami             = "ami-0f3caa1cf4417e51b"
-  instance_type   = "t2.micro"
-  key_name        = "MYAWS"
+  ami             = "ami-0f559c3642608c138"
+  instance_type   = "t3.micro"
+  key_name        = "ANSIBLE"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "us-east-1b"
+  availability_zone = "ap-south-1b"
   tags = {
     Name = "app-server-2"
   }
@@ -99,7 +99,7 @@ default = ["milky1", "tillu1", "hari1", "Dharani1"]
 }
 
 resource "aws_ebs_volume" "eight" {
- availability_zone = "us-east-1a"
+ availability_zone = "ap-south-1a"
   size = 25
   tags = {
     Name = "ebs-001"
