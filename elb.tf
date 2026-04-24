@@ -1,6 +1,6 @@
 resource "aws_elb" "bar" {
   name               = "pythonlife-terraform-elb"
-  availability_zones = ["ap-south-1a", "ap-south-1b"]
+  availability_zones = ["us-east-1a", "us-east-1b"]
 
   listener {
     instance_port     = 80
