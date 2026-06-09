@@ -26,4 +26,3 @@ resource "aws_elb" "bar" {
 }
 
 
-
