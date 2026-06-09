@@ -17,10 +17,13 @@ resource "aws_elb" "bar" {
     interval            = 30
   }
 
-  instances                 = ["${aws_instance.one.id}", "${aws_instance.two.id}"]
+  instances = [
+    aws_instance.one.id,
+    aws_instance.two.id
+  ]
+
   tags = {
     Name = "pythonlife-tf-elb"
   }
 }
-
 
