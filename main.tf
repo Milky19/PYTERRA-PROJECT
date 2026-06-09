@@ -4,9 +4,9 @@ region = "us-east-1"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-0ec10929233384c7f"
+  ami             = "ami-0152204c1a187337c"
   instance_type   = "t3.micro"
-  key_name        = "AKS"
+  key_name        = "DOCKER"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1a"
   user_data       = <<EOF
@@ -23,9 +23,9 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-0ec10929233384c7f"
+  ami             = "ami-0152204c1a187337c"
   instance_type   = "t3.micro"
-  key_name        = "AKS"
+  key_name        = "DOCKER"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1b"
   user_data       = <<EOF
@@ -42,9 +42,9 @@ EOF
 }
 
 resource "aws_instance" "three" {
-  ami             = "ami-0ec10929233384c7f"
+  ami             = "ami-0152204c1a187337c"
   instance_type   = "t3.micro"
-  key_name        = "AKS"
+  key_name        = "DOCKER"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1a"
   tags = {
@@ -53,9 +53,9 @@ resource "aws_instance" "three" {
 }
 
 resource "aws_instance" "four" {
-  ami             = "ami-0ec10929233384c7f"
+  ami             = "ami-0152204c1a187337c"
   instance_type   = "t3.micro"
-  key_name        = "AKS"
+  key_name        = "DOCKER"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "us-east-1b"
   tags = {
