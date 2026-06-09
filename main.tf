@@ -1,73 +1,23 @@
-
 provider "aws" {
-region = "us-east-1"
+  region = "us-east-1"
 }
-resource "aws_instance" "one" {
-  ami                    = "ami-0152204c1a187337c"
-  instance_type          = "t3.micro"
-  key_name               = "DOCKER"
-  vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone      = "us-east-1a"
 
-  user_data = <<EOF
-#!/bin/bash
-yum install httpd -y
-systemctl start httpd
-systemctl enable httpd
-echo "This is my app created by Terraform - Server 1" > /var/www/html/index.html
-EOF
+# Default VPC
+data "aws_vpc" "default" {
+  default = true
+}
 
-  tags = {
-    Name = "web-server-1"
+# Default Subnets
+data "aws_subnets" "default" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
   }
 }
 
-resource "aws_instance" "two" {
-  ami                    = "ami-0152204c1a187337c"
-  instance_type          = "t3.micro"
-  key_name               = "DOCKER"
-  vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone      = "us-east-1b"
-
-  user_data = <<EOF
-#!/bin/bash
-yum install httpd -y
-systemctl start httpd
-systemctl enable httpd
-echo "This is my app created by Terraform - Server 2" > /var/www/html/index.html
-EOF
-
-  tags = {
-    Name = "web-server-2"
-  }
-}
-
-resource "aws_instance" "three" {
-  ami                    = "ami-0152204c1a187337c"
-  instance_type          = "t3.micro"
-  key_name               = "DOCKER"
-  vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone      = "us-east-1a"
-
-  tags = {
-    Name = "app-server-1"
-  }
-}
-
-resource "aws_instance" "four" {
-  ami                    = "ami-0152204c1a187337c"
-  instance_type          = "t3.micro"
-  key_name               = "DOCKER"
-  vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone      = "us-east-1b"
-
-  tags = {
-    Name = "app-server-2"
-  }
-}
-
+# Security Group
 resource "aws_security_group" "five" {
-  name = "elb-sg"
+  name = "alb-sg"
 
   ingress {
     from_port   = 22
@@ -91,12 +41,48 @@ resource "aws_security_group" "five" {
   }
 }
 
-resource "aws_ebs_volume" "eight" {
-  availability_zone = "us-east-1a"
-  size              = 25
+# Web Server 1
+resource "aws_instance" "one" {
+  ami                    = "ami-0152204c1a187337c"
+  instance_type          = "t3.micro"
+  key_name               = "DOCKER"
+  availability_zone      = "us-east-1a"
+  vpc_security_group_ids = [aws_security_group.five.id]
+
+  user_data = <<EOF
+#!/bin/bash
+yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+echo "Welcome to Web Server 1" > /var/www/html/index.html
+EOF
 
   tags = {
-    Name = "ebs-001"
+    Name = "web-server-1"
   }
 }
 
+# Web Server 2
+resource "aws_instance" "two" {
+  ami                    = "ami-0152204c1a187337c"
+  instance_type          = "t3.micro"
+  key_name               = "DOCKER"
+  availability_zone      = "us-east-1b"
+  vpc_security_group_ids = [aws_security_group.five.id]
+
+  user_data = <<EOF
+#!/bin/bash
+yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+echo "Welcome to Web Server 2" > /var/www/html/index.html
+EOF
+
+  tags = {
+    Name = "web-server-2"
+  }
+}
+
+output "alb_dns_name" {
+  value = aws_lb.alb.dns_name
+}
