@@ -18,8 +18,6 @@ resource "aws_elb" "bar" {
   }
 
   instances                 = ["${aws_instance.one.id}", "${aws_instance.two.id}"]
-  cross_zone_load_balancing = true
-  idle_timeout              = 400
   tags = {
     Name = "pythonlife-tf-elb"
   }
