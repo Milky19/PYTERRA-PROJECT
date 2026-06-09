@@ -1,29 +1,59 @@
-resource "aws_elb" "bar" {
-  name               = "pythonlife-terraform-elb"
-  availability_zones = ["us-east-1a", "us-east-1b"]
-
-  listener {
-    instance_port     = 80
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
-  }
-
-  health_check {
-    healthy_threshold   = 3
-    unhealthy_threshold = 5
-    timeout             = 5
-    target              = "HTTP:80/"
-    interval            = 30
-  }
-
-  instances = [
-    aws_instance.one.id,
-    aws_instance.two.id
-  ]
+# Application Load Balancer
+resource "aws_lb" "alb" {
+  name               = "pythonlife-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.five.id]
+  subnets            = data.aws_subnets.default.ids
 
   tags = {
-    Name = "pythonlife-tf-elb"
+    Name = "pythonlife-alb"
   }
 }
 
+# Target Group
+resource "aws_lb_target_group" "tg" {
+  name     = "pythonlife-tg"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = data.aws_vpc.default.id
+
+  health_check {
+    path                = "/"
+    protocol            = "HTTP"
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 5
+    interval            = 30
+  }
+
+  tags = {
+    Name = "pythonlife-target-group"
+  }
+}
+
+# Attach Instance 1
+resource "aws_lb_target_group_attachment" "server1" {
+  target_group_arn = aws_lb_target_group.tg.arn
+  target_id        = aws_instance.one.id
+  port             = 80
+}
+
+# Attach Instance 2
+resource "aws_lb_target_group_attachment" "server2" {
+  target_group_arn = aws_lb_target_group.tg.arn
+  target_id        = aws_instance.two.id
+  port             = 80
+}
+
+# Listener
+resource "aws_lb_listener" "listener" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tg.arn
+  }
+}
