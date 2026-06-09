@@ -92,11 +92,6 @@ for_each = var.user_names
 name = each.value
 }
 
-variable "user_names" {
-description = "*"
-type = set(string)
-default = ["milky1", "tillu1", "hari1", "Dharani1"]
-}
 
 resource "aws_ebs_volume" "eight" {
  availability_zone = "us-east-1a"
