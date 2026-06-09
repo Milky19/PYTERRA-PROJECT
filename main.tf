@@ -91,8 +91,6 @@ resource "aws_iam_user" "seven" {
 for_each = var.user_names
 name = each.value
 }
-
-
 resource "aws_ebs_volume" "eight" {
  availability_zone = "us-east-1a"
   size = 25
