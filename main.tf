@@ -43,9 +43,9 @@ resource "aws_security_group" "five" {
 
 # Web Server 1
 resource "aws_instance" "one" {
-  ami                    = "ami-0152204c1a187337c"
+  ami                    = "ami-01edba92f9036f76e"
   instance_type          = "t3.micro"
-  key_name               = "DOCKER"
+  key_name               = "JUNE-DEVOPS"
   availability_zone      = "us-east-1a"
   vpc_security_group_ids = [aws_security_group.five.id]
 
@@ -64,9 +64,9 @@ EOF
 
 # Web Server 2
 resource "aws_instance" "two" {
-  ami                    = "ami-0152204c1a187337c"
+  ami                    = "ami-01edba92f9036f76e"
   instance_type          = "t3.micro"
-  key_name               = "DOCKER"
+  key_name               = "JUNE-DEVOPS"
   availability_zone      = "us-east-1b"
   vpc_security_group_ids = [aws_security_group.five.id]
 
