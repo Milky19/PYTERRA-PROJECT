@@ -45,7 +45,7 @@ resource "aws_security_group" "five" {
 resource "aws_instance" "one" {
   ami                    = "ami-0332d564d76dbd8d6"
   instance_type          = "t3.micro"
-  key_name               = "JAPP-LB"
+  key_name               = "APP-LB"
   availability_zone      = "us-east-1a"
   vpc_security_group_ids = [aws_security_group.five.id]
 
